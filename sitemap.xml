@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://jagermi3ster.github.io/theworkwatch/jupyter/2020/02/20/test.html</loc>
-<lastmod>2020-02-20T00:00:00-06:00</lastmod>
-</url>
-<url>
 <loc>https://jagermi3ster.github.io/theworkwatch/workwatchbeta</loc>
 <lastmod>2022-10-28T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>https://jagermi3ster.github.io/theworkwatch/api/alarms</loc>
+<lastmod>2022-10-29T00:00:00-05:00</lastmod>
 </url>
 <url>
 <loc>https://jagermi3ster.github.io/theworkwatch/about/</loc>
