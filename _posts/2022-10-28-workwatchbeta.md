@@ -6,6 +6,7 @@ permalink: /workwatchbeta
 ---
 
 <h3>Work Watch</h3>
+<p style="margin:10px 100px 30px 100px; text-align:left">The Work Watch is an interactive, customizable stopwatch program which helps you organize your work sessions. Modify break, notification, and task settings with their respective menus.<br><br>We recommend taking 10-minute breaks every 30 minutes (unless your work session is too short or  constrained). We also suggest hiding the timer so that your session's duration doesn't distract you, but still receive time notifications every 20 minutes keep yourself on track. A maximum of five tasks can be added to the list. Click the "Complete Task" button when one is finished. The timer will automatically reset when all tasks have been completed and display a reflection on your work session.</p>
 <h4><button id="break">Breaks</button>&emsp; <button id="notif">Notifications</button>&emsp;<button id="task">Tasks</button></h4>
 <br>
 <h5 id="breakinput" style="transform:translate(+235px, -60px)"><label>Break Info<br></label>
@@ -167,9 +168,9 @@ h4
   font-size: 15px;
   letter-spacing: 1px;
   margin: 1px;
-  background: #000000;
+  background: #111111;
   border:solid 2px #444444;
-  border-radius: 100px;
+  border-radius: 45px;
   padding:1px 1px 1px;
   letter-spacing: 2px;
   text-align: center;
@@ -212,6 +213,7 @@ let sec = 0;
 let min = 0;
 let hr = 0;
 let running = 0;
+let started = 0;
 let notifbox = document.getElementById('notifbox');
 let notiftext = "This will be a timer notification.";
 let breaktext = "This will be a break notification.";
@@ -284,8 +286,9 @@ function timer() {
       };
       update_notifbox();
     };
-    if(constant == breaktrig) {
+    if(constant == breaktrig && breaktrig != 0) {
       breaktext = "It's break time! Please take a " + breakdur + "-minute break.";
+      taskend = taskend + (breakdur * 6000)
       breakend = (breakdur * 6000) + constant;
       breaktrig = (constant + (6000 * (breakdur + breakintv)))
       console.log(constant, breakend, breakintv)
@@ -298,6 +301,7 @@ function timer() {
     if(constant == taskend && taskend != 0) {
       tasktext = 'You anticipated that "' + tasknlist[currenttask] + '" would be completed by now.';
       taskovertime.push(tasknlist[currenttask]);
+      update_notifbox();
     };
     //Doing some string interpolation
     let seconds = sec < 10 ? `0`+ sec : sec;
@@ -321,17 +325,17 @@ function readtime(){
 //Start timer
 function start(){
  if (running == 0){
-   breaktext = "This will be a break notification."
-   notiftext = "This will be a timer notification."
-   tasktext = "This will be a task notification."
+   if(started == 0) {
+    breaktext = "This will be a break notification."
+    notiftext = "This will be a timer notification."
+    tasktext = "This will be a task notification."
+    started = 1
+    }
    update_notifbox()
-   try {
-     taskend = (taskdlist[0] * 6000);
-   }
-   catch(err) {
-   };
+   taskend = (taskdlist[0] * 6000);
    if(Math.round(Number(bintvinp.value)) > 0) {
      breakintv = Math.round(Number(bintvinp.value))
+     breaktrig = (breakintv * 6000)
    } else {
      breaktext = "Input a break interval as an integer greater than zero."
      update_notifbox()
