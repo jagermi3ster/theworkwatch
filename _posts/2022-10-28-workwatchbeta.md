@@ -264,7 +264,7 @@ function singularity_check() {
 
 function timer() {
     constant++;
-    ms++;
+    ms++; //VAGUE TIME INCREASE CODE COURTESY OF "Dr Gaud" ON STACKOVERFLOW
     if(ms >= 100){
         sec++
         ms = 0
@@ -276,7 +276,7 @@ function timer() {
     if(min === 60){
         hr++
         min = 0
-    }
+    } //Code below was not created by "Dr Gaud"
     if(constant % (notifintv * 6000) == 0) {
       singularity_check()
       if(hr != 0) {
@@ -303,7 +303,7 @@ function timer() {
       taskovertime.push(tasknlist[currenttask]);
       update_notifbox();
     };
-    //Doing some string interpolation
+    //STRING INTERPOLATION COURTESY OF "Dr Gaud" ON STACKOVERFLOW
     let seconds = sec < 10 ? `0`+ sec : sec;
     let minute = min < 10 ? `0` + min : min;
     let hour = hr < 10 ? `0` + hr : hr;
