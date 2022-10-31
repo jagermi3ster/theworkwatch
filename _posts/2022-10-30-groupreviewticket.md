@@ -84,5 +84,6 @@ We plan to add...
 
 - A fetch process to our Alarm API that determines which alarm will play when a break occurs, ends, or a task was anticipated to have ended
 - The location of the input windows for breaks, notifications and tasks will be relative to the corresponding button (rather than transforming and translating with pixels or percentage)
+- Customize this fastpages to fit our group
 
 We've got a few days to figure it out, so everything should be great by the due date.
