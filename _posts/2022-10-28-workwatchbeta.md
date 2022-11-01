@@ -3,6 +3,7 @@ title: Work Watch Beta
 layout: none
 description: Try it out!
 permalink: /workwatchbeta
+image: /images/workwatchscreen.png
 ---
 
 <h3>Work Watch</h3>
