@@ -1,5 +1,6 @@
 <h3>Work Watch</h3>
-<p style="margin:10px 100px 30px 100px; text-align:left">The Work Watch is an interactive, customizable stopwatch program which helps you organize your work sessions. Modify break, notification, and task settings with their respective menus.<br /><br />We recommend taking 10-minute breaks every 30 minutes (unless your work session is too short or  constrained). We also suggest hiding the timer so that your session's duration doesn't distract you, but still receive time notifications every 20 minutes keep yourself on track. A maximum of five tasks can be added to the list. Click the "Complete Task" button when one is finished. The timer will automatically reset when all tasks have been completed and display a reflection on your work session.</p>
+<p style="margin:10px 100px 10px 100px; text-align:left">The Work Watch is an interactive, customizable stopwatch program which helps you organize your work sessions. Modify break, notification, and task settings with their respective menus.<br /><br />We recommend taking 10-minute breaks every 30 minutes (unless your work session is too short or  constrained). We also suggest hiding the timer so that your session's duration doesn't distract you, but still receive time notifications every 20 minutes keep yourself on track. A maximum of five tasks can be added to the list. Click the "Complete Task" button when one is finished. The timer will automatically reset when all tasks have been completed and display a reflection on your work session</p>
+<p id="thealarm"><br />Please wait...</p>
 <h4><button id="break">Breaks</button>&emsp; <button id="notif">Notifications</button>&emsp;<button id="task">Tasks</button></h4>
 <p><br /></p>
 <h5 id="breakinput" style="transform:translate(+235px, -60px)"><label>Break Info<br /></label>
@@ -230,12 +231,125 @@ var currenttask = 0;
 var taskend = 0;
 var taskearly = [];
 var taskovertime = [];
+var reflection = "";
 notifbox.innerHTML = "<br>" + breaktext + "<br><br>" + notiftext + "<br><br>" + tasktext + "<br><br>";
-reflection = "";
+alarmnames = [
+    "bandalarm", "beachalarm", "calmingalarm", "celestialalarm", "galaxyalarm", "happyalarm", "marchalarm", "soulfulalarm", "spacealarm", "traditionalalarm"
+  ];
+var alarmname = "placeholder";
+let whichalarm = "happyalarm";
+function alarm_name() {
+  console.log(whichalarm)
+  if(whichalarm == "bandalarm") {
+    var alarmname = "Band Alarm";
+  } else if(whichalarm == "beachalarm") {
+    var alarmname = "Beach Alarm";
+  } else if(whichalarm == "calmingalarm") {
+    var alarmname = "Calming Alarm";
+  } else if(whichalarm == "celestialalarm") {
+    var alarmname = "Celestial Alarm";
+  } else if(whichalarm == "galaxyalarm") {
+    var alarmname = "Galaxy Alarm";
+  } else if(whichalarm == "happyalarm") {
+    var alarmname = "Happy Alarm";
+  } else if(whichalarm == "marchalarm") {
+    var alarmname = "March Alarm";
+  } else if(whichalarm == "soulfulalarm") {
+    var alarmname = "Soulful Alarm";
+  } else if(whichalarm == "spacealarm") {
+    var alarmname = "Space Alarm";
+  } else if(whichalarm == "traditionalalarm") {
+    var alarmname = "Traditional Alarm";
+  };
+}
+var temp = 0
+function fetch_alarm() {
+  temp++
+  // keys for joke reactions
+  const HAHA = "haha";
+  const BOOHOO = "boohoo";
+  // prepare fetch urls
+  const url = "https://workwatch.nighthawkcodescrums.gq/api/jokes";
+  const like_url = url + "/like/";  // haha reaction
+  const jeer_url = url + "/jeer/";  // boohoo reaction
+  // prepare fetch GET options
+  const options = {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  };
+  // prepare fetch PUT options, clones with JS Spread Operator (...)
+  const put_options = {...options, method: 'PUT'}; // clones and replaces method
+  // fetch the API
+  fetch(url, options)
+    // response is a RESTful "promise" on any successful fetch
+    .then(response => {
+      // check for response errors
+      if (response.status !== 200) {
+          error('GET API response failure: ' + response.status);
+          whichalarm = "happyalarm";
+          return;
+      }
+      response.json().then(data => {
+          console.log(data);
+          var returndata = []
+          for(i = 0; i < data.length; i++) {
+            if (data[i]['id'] == 0) {
+                returndata = [(data[i]["haha"] - data[i]["boohoo"]), data[i]['id']]
+            }
+            alarmdata = data[i]["haha"] - data[i]["boohoo"];
+            if (returndata[0] < alarmdata) {
+                returndata = [alarmdata, data[i]['id']]
+            }
+          }
+          console.log(returndata);
+          console.log(returndata[1]);
+          whichalarm = (alarmnames[returndata[1]]);
+          console.log(whichalarm);
+  })});
+};
+function alarm_name() {
+  console.log(whichalarm)
+  if(whichalarm == "bandalarm") {
+    var alarmname = "Band Alarm";
+  } else if(whichalarm == "beachalarm") {
+    var alarmname = "Beach Alarm";
+  } else if(whichalarm == "calmingalarm") {
+    var alarmname = "Calming Alarm";
+  } else if(whichalarm == "celestialalarm") {
+    var alarmname = "Celestial Alarm";
+  } else if(whichalarm == "galaxyalarm") {
+    var alarmname = "Galaxy Alarm";
+  } else if(whichalarm == "happyalarm") {
+    var alarmname = "Happy Alarm";
+  } else if(whichalarm == "marchalarm") {
+    var alarmname = "March Alarm";
+  } else if(whichalarm == "soulfulalarm") {
+    var alarmname = "Soulful Alarm";
+  } else if(whichalarm == "spacealarm") {
+    var alarmname = "Space Alarm";
+  } else if(whichalarm == "traditionalalarm") {
+    var alarmname = "Traditional Alarm";
+  };
+  document.getElementById("thealarm").innerHTML = "The current alarm is the " + alarmname + ".";
+};
+
+fetch_alarm();
+setTimeout(alarm_name, 3000)
+
+function play_alarm() {
+  var alarm = new Audio('../theworkwatch/sound/' + whichalarm + '.mp3');
+  alarm.play();
+};
 
 function update_notifbox() {
-  notifbox.innerHTML = "<br>" + breaktext + "<br><br>" + notiftext + "<br><br>" + tasktext + "<br><br>"
-}
+  notifbox.innerHTML = "<br>" + breaktext + "<br><br>" + notiftext + "<br><br>" + tasktext + "<br><br>";
+};
 
 function singularity_check() {
   if (hr != 1){
@@ -257,7 +371,7 @@ function singularity_check() {
 
 function timer() {
     constant++;
-    ms++; //VAGUE TIME INCREASE CODE COURTESY OF "Dr Gaud" ON STACKOVERFLOW
+    ms++;
     if(ms >= 100){
         sec++
         ms = 0
@@ -269,7 +383,7 @@ function timer() {
     if(min === 60){
         hr++
         min = 0
-    } //Code below was not created by "Dr Gaud"
+    }
     if(constant % (notifintv * 6000) == 0) {
       singularity_check()
       if(hr != 0) {
@@ -286,17 +400,19 @@ function timer() {
       breaktrig = (constant + (6000 * (breakdur + breakintv)))
       console.log(constant, breakend, breakintv)
       update_notifbox();
+      play_alarm();
     };
     if(constant == breakend) {
       breaktext = "Break time's over. Get back to work!";
       update_notifbox();
+      play_alarm();
     };
     if(constant == taskend && taskend != 0) {
       tasktext = 'You anticipated that "' + tasknlist[currenttask] + '" would be completed by now.';
       taskovertime.push(tasknlist[currenttask]);
       update_notifbox();
     };
-    //STRING INTERPOLATION COURTESY OF "Dr Gaud" ON STACKOVERFLOW
+    //Doing some string interpolation
     let seconds = sec < 10 ? `0`+ sec : sec;
     let minute = min < 10 ? `0` + min : min;
     let hour = hr < 10 ? `0` + hr : hr;
