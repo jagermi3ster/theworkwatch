@@ -39,8 +39,8 @@
 
   
       ,"page1": {
-          "title": "About Me",
-          "content": "This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
+          "title": "About Us",
+          "content": "The Team: . Drew Reed (Scrum Master) . Devon Shepard (Backend Developer) . Jagger Klein (Frontend Developer) . Trent Cardall (DevOps) . Hi! I’m Trent Cardall, a senior at DNHS. My role as DevOps mostly involved deployment and management of code. Although I didn’t directly work on much of the program, it wouldn’t work without me! I worked in an AWS instance to allow our backend data to be accessible by the Work Watch, which allows it to use some of the great features such as the alarm which people voted for. .",
           "url": "https://jagermi3ster.github.io/theworkwatch/about/",
           "relUrl": "/about/",
           "date": ""
@@ -54,23 +54,30 @@
   
 
   
+  
+
+  
+      ,"page5": {
+          "title": "Work Watch",
+          "content": "Work Watch . The Work Watch is an interactive, customizable stopwatch program which helps you organize your work sessions. Modify break, notification, and task settings with their respective menus.We recommend taking 10-minute breaks every 30 minutes (unless your work session is too short or constrained). We also suggest hiding the timer so that your session&#39;s duration doesn&#39;t distract you, but still receive time notifications every 20 minutes keep yourself on track. A maximum of five tasks can be added to the list. Click the &quot;Complete Task&quot; button when one is finished. The timer will automatically reset when all tasks have been completed and display a reflection on your work session . Please wait... . Breaks&emsp; Notifications&emsp;Tasks . . Break Info Break interval: minutesBreak duration: minutes . Notification Info Notification interval: minutes . Task InfoTask Name: Task Duration: minutesAdd Task to Tasklist . . Start Stop Reset Task Complete . . .",
+          "url": "https://jagermi3ster.github.io/theworkwatch/_pages/workwatch.html",
+          "relUrl": "/_pages/workwatch.html",
+          "date": ""
+      }
+      
+  
 
   
   
 
   
-
-  
   
 
   
   
 
   
-  
-
-  
-      ,"page10": {
+      ,"page9": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://jagermi3ster.github.io/theworkwatch/robots.txt",
