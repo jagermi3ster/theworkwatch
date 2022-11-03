@@ -70,13 +70,33 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <h1 id="project-overview">Project Overview</h1>
+        <h2 id="project-overview">Project Overview</h2>
 
 <p>The Work Watch is an interactive, customizable stopwatch program which helps you organize your work sessions. Though we provide default recommendations for break intervals, duration, and timer notification intervals, the user can customize them fully. The user is also able to create a list of tasks to complete during the work session, along with their expected duration.</p>
 
 <p>The user is notified when it is time to take a break and when they had anticipated they would have completed a certain task to help keep them on track.</p>
 
-<h2 id="planning">Planning</h2>
+<h3 id="theming-and-purpose">Theming and Purpose</h3>
+
+<p>Our program’s theme is sleek and minimalistic, which goes along with its purpose of preventing distractions. The more detailed purpose of the Work Watch is to help students get the most out of their work sessions while also giving time for them to do the things they enjoy.</p>
+
+<p>As we learned in the speech by Laurie Santos (“Psychology and the Good Life”), students often feel that they do not have enough time to do the things that they enjoy, which are often things that supplement their learning (exercise, reading, and even consuming other forms of media).</p>
+
+<p>It has been proven in numerous studies that taking semi-frequent breaks during work sessions not only improves mental health and prevents burnout, but increases the quality (and even, at times, quantity) of work output. We made our program with this in mind.</p>
+
+<h3 id="our-frontend">Our Frontend</h3>
+
+<p>Go <a href="https://jagermi3ster.github.io/theworkwatch/workwatch">here</a> to see our frontend (the program itself) by looking at inspect element. Check the code comments to see the purpose for all variables/functions.</p>
+
+<h3 id="our-backend">Our Backend</h3>
+
+<p>Go <a href="https://jagermi3ster.github.io/theworkwatch/api/alarms">here</a> to see where the backend data is collected, and <a href="https://workwatch.nighthawkcodescrums.gq/api/jokes/">here</a> to see the raw data produced by our backend code. It is obviously directly based on the pre-existing Jokes API, modified for our needs. We did not feel it necessary to change the variables to fit alarms instead of jokes because it would have been an unnecessary amount of effort for an equal result.</p>
+
+<h2 id="the-process">The Process</h2>
+
+<p>Below we describe the four stages we were asked to talk about in last week’s review ticket.</p>
+
+<h3 id="planning">Planning</h3>
 
 <p>Though not ideal with their format due to a lack of checkboxes (as mentioned in class), up to this point, our group has used an issue on our group Flask Github repository to organize assignments for each week as well as what we intend to get done. See the full SCRUM board <a href="https://github.com/drewreed2005/The-Watchers/issues/1">here</a>.</p>
 
@@ -84,7 +104,7 @@ window.onload = wrap_img;
 
 <p>In the “Goals” section of the SCRUM Board table, we outlined our interests for the next week of work. At the beginning of each week, we looked back at these goals and referenced them when creating a sprint plan, reflected by the “Assignments” each week given to various roles. Sometimes the assignments are more specific than other times. It depends on what specifically we saw necessary to get done by the end of the day.</p>
 
-<h2 id="what-weve-completed-in-the-past-week">What We’ve Completed in the Past Week</h2>
+<h3 id="what-weve-completed-in-the-past-week">What We’ve Completed in the Past Week</h3>
 
 <p>It would probably be most efficient to explain what we’ve done in the past week by looking at <a href="https://jagermi3ster.github.io/theworkwatch/workwatchbeta">this page</a>.</p>
 
@@ -113,7 +133,7 @@ window.onload = wrap_img;
 
 <p>There is likely more that we neglected to mention.</p>
 
-<h2 id="problems-we-faced-and-solutions">Problems We Faced and Solutions</h2>
+<h3 id="problems-we-faced-and-solutions">Problems We Faced and Solutions</h3>
 
 <p>Here are just a few off the top of our heads, expressed in a table.</p>
 
@@ -144,9 +164,9 @@ window.onload = wrap_img;
     </tr>
 </table>
 
-<h2 id="whats-left-to-do">What’s Left to Do</h2>
+<h3 id="whats-left-to-do">What’s Left to Do</h3>
 
-<p>We plan to add…</p>
+<p>As of last week, we planned to add…</p>
 
 <ul>
   <li>A fetch process to our Alarm API that determines which alarm will play when a break occurs, ends, or a task was anticipated to have ended</li>
@@ -154,7 +174,7 @@ window.onload = wrap_img;
   <li>Customize this fastpages to fit our group</li>
 </ul>
 
-<p>We’ve got a few days to figure it out, so everything should be great by the due date.</p>
+<p>We added all but the relative locations for the input windows because there simply isn’t enough time to uproot the code to work like that. Ultimately, it doesn’t really matter.</p>
 
       </div>
     </main><footer class="site-footer h-card">

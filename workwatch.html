@@ -201,45 +201,45 @@ h5 {
 
 <script>
     let output = document.getElementById('stopwatch');
-let constant = 0; //Below are timer run var
-let ms = 0;
+let constant = 0; //Total time var
+let ms = 0; //Display time var
 let sec = 0;
 let min = 0;
 let hr = 0;
 let running = 0;
 let started = 0;
-let notifbox = document.getElementById('notifbox');
-let notiftext = "This will be a timer notification.";
+let notifbox = document.getElementById('notifbox'); //notification box
+let notiftext = "This will be a timer notification."; //text in notification box (to be updated with timer run)
 let breaktext = "This will be a break notification.";
 let tasktext = "This will be a task notification.";
-let bintvinp = document.getElementById('bintvinput');
+let bintvinp = document.getElementById('bintvinput'); //input boxes for variables
 let bdurinp = document.getElementById('bdurinput');
 let nintvinp = document.getElementById('nintvinput');
-let notifintv = 20;
+let notifintv = 20; //default timer variables
 let breakintv = 30;
-let breaktrig = (breakintv * 6000)
-let breakend = (breakintv + 1) * 6000;
+let breaktrig = (breakintv * 6000) //triggers breaks at certain times
+let breakend = (breakintv + 1) * 6000; //ends breaks at certain times
 let breakdur = 10;
-var temptasktext = "";
-var taskbox = document.getElementById('taskbox');
-taskbox.innerHTML = "<br>Your tasks will be displayed here.<br><br>"
-var taskname = "My Task";
+var temptasktext = ""; //will be overwritten later, here for global scale
+var taskbox = document.getElementById('taskbox'); //taskbox element
+taskbox.innerHTML = "<br>Your tasks will be displayed here.<br><br>" //taskbox text
+var taskname = "My Task"; //default task info
 var taskdur = 45;
-var tasknlist = [];
+var tasknlist = []; //empty lists to be filled in for task information
 var taskdlist = [];
-var currenttask = 0;
+var currenttask = 0; //represents the currently used task
 var taskend = 0;
-var taskearly = [];
+var taskearly = []; //lists of early/late tasks
 var taskovertime = [];
-var reflection = "";
-notifbox.innerHTML = "<br>" + breaktext + "<br><br>" + notiftext + "<br><br>" + tasktext + "<br><br>";
+var reflection = ""; //to be filled in for reflection later
+notifbox.innerHTML = "<br>" + breaktext + "<br><br>" + notiftext + "<br><br>" + tasktext + "<br><br>"; //default notifbox text
 alarmnames = [
     "bandalarm", "beachalarm", "calmingalarm", "celestialalarm", "galaxyalarm", "happyalarm", "marchalarm", "soulfulalarm", "spacealarm", "traditionalalarm"
-  ];
-var alarmname = "placeholder";
-let whichalarm = "happyalarm";
+  ]; //to be called upon later to tell program which to use
+var alarmname = "placeholder"; //will be determined by fetch_alarm
+let whichalarm = "happyalarm"; //default for alarm in case failure to fetch
 function alarm_name() {
-  console.log(whichalarm)
+  console.log(whichalarm) //creates grammatically correct names for alarms
   if(whichalarm == "bandalarm") {
     var alarmname = "Band Alarm";
   } else if(whichalarm == "beachalarm") {
@@ -261,8 +261,9 @@ function alarm_name() {
   } else if(whichalarm == "traditionalalarm") {
     var alarmname = "Traditional Alarm";
   };
-}
-var temp = 0
+};
+var temp = 0; //temporary variable to be used in fetch_alarm
+//fetch_alarm fetches from our API and defines the alarm that will be used (copied from table from Jokes API)
 function fetch_alarm() {
   temp++
   // keys for joke reactions
@@ -297,22 +298,23 @@ function fetch_alarm() {
       }
       response.json().then(data => {
           console.log(data);
-          var returndata = []
+          var returndata = []; //array to let us make sure the correct one is determined the winner in the console
+          //the for loop below checks for the like/dislike value of every alarm and picks the one with the best ratio
           for(i = 0; i < data.length; i++) {
             if (data[i]['id'] == 0) {
                 returndata = [(data[i]["haha"] - data[i]["boohoo"]), data[i]['id']]
             }
             alarmdata = data[i]["haha"] - data[i]["boohoo"];
             if (returndata[0] < alarmdata) {
-                returndata = [alarmdata, data[i]['id']]
-            }
-          }
+                returndata = [alarmdata, data[i]['id']];
+            };
+          }; //tests for alarm data
           console.log(returndata);
           console.log(returndata[1]);
           whichalarm = (alarmnames[returndata[1]]);
           console.log(whichalarm);
   })});
-};
+}; //duplicate due to prior testing
 function alarm_name() {
   console.log(whichalarm)
   if(whichalarm == "bandalarm") {
@@ -338,19 +340,19 @@ function alarm_name() {
   };
   document.getElementById("thealarm").innerHTML = "The current alarm is the " + alarmname + ".";
 };
-
+//setTimeout used to ensure that the fetch is given time to complete before alarm_name() fetches the right data
 fetch_alarm();
 setTimeout(alarm_name, 3000)
-
+//function to play the alarm at breaks
 function play_alarm() {
   var alarm = new Audio('../theworkwatch/sound/' + whichalarm + '.mp3');
   alarm.play();
 };
-
+//updates the notification box to feature new updated text variables
 function update_notifbox() {
   notifbox.innerHTML = "<br>" + breaktext + "<br><br>" + notiftext + "<br><br>" + tasktext + "<br><br>";
 };
-
+//checks whether or not the hour/minute/second count is singular
 function singularity_check() {
   if (hr != 1){
     hrtext = " hours";
@@ -368,7 +370,7 @@ function singularity_check() {
     sectext = ' second';
   };
 };
-
+//run in increments to increase time each centisecond
 function timer() {
     constant++;
     ms++;
@@ -412,14 +414,14 @@ function timer() {
       taskovertime.push(tasknlist[currenttask]);
       update_notifbox();
     };
-    //Doing some string interpolation
+    //Doing some string interpolation (CREDIT TO "Dr Goul" on Stack Overflow)
     let seconds = sec < 10 ? `0`+ sec : sec;
     let minute = min < 10 ? `0` + min : min;
     let hour = hr < 10 ? `0` + hr : hr;
-
+    //turning time variables into readable timer
     let time = `${hour}:${minute}:${seconds}`;
     output.innerHTML =time;
-  }
+  };
 function readtime(){
   singularity_check()
   if(hr == 0 && min == 0) {
@@ -431,7 +433,7 @@ function readtime(){
     timetext = hr + hrtext + ", " + min + mintext + " and " + sec + sectext;
   }
 }
-//Start timer
+//Starts the timer after checking for variable problems
 function start(){
  if (running == 0){
    if(started == 0) {
@@ -440,7 +442,7 @@ function start(){
     tasktext = "This will be a task notification."
     started = 1
     }
-   update_notifbox()
+   update_notifbox() //code underneath checks if user inputs are valid
    taskend = (taskdlist[0] * 6000);
    if(Math.round(Number(bintvinp.value)) > 0) {
      breakintv = Math.round(Number(bintvinp.value))
@@ -465,10 +467,11 @@ function start(){
      return
    }
    time = setInterval(timer,10)
+   //running variable prevents it from being pressed until it's not running
    running = 1
  }
 }
-//stop timer
+//stops the timer
 function stop(){
     running = 0;
     try {
@@ -478,7 +481,7 @@ function stop(){
       return;
     };
 };
-//reset timer
+//resets the timer and all of the variables, stops the timer
 function reset(){
     stop();
     running = 0;
@@ -499,7 +502,7 @@ function reset(){
     newtaskBtn.style.background = "#E5E5E5";
     newtaskBtn.innerHTML = "Add Task to Tasklist";
 };
-
+//gives a reflection that shows tasks completed late, early
 function taskreflect() {
   earlytasks = "Early Tasks: ";
   for(let i = 0; i < taskearly.length; i++) {
@@ -524,7 +527,7 @@ function taskreflect() {
     };
   };
 };
-
+//function for tc button, sends to the next task
 function taskcomplete() {
   if(running == 0){
     return;
@@ -552,12 +555,12 @@ function taskcomplete() {
   };
   taskend = (constant + (taskdlist[currenttask] * 6000));
 };
-
+//defining button variables
 const startBtn = document.getElementById('startBtn');
 const stopBtn =  document.getElementById('stopBtn');
 const resetBtn = document.getElementById('resetBtn');
 const taskcompleteBtn = document.getElementById('taskcomplete');
-
+//button clicks functions
 startBtn.onclick = function() {
   start()
 };
@@ -570,7 +573,7 @@ resetBtn.onclick = function() {
 taskcompleteBtn.onclick = function() {
   taskcomplete()
 };
-
+//editing, giving function for hide timer button
 var hidden = 0;
 var hw = document.getElementById('hide');
 hw.innerHTML = "Hide Time"
@@ -586,7 +589,7 @@ hw.onclick = function() {
       hw.innerHTML = "Hide Time"
     };
   };
-var bihidden = 1;
+var bihidden = 1; //variables and functions for opening little input windows
 var nohidden = 1;
 var tahidden = 1;
 var breakInp = document.getElementById('breakinput');
@@ -598,7 +601,7 @@ var notifBtn = document.getElementById('notif');
 var taskBtn = document.getElementById('task');
 notifBtn.onclick = function() {
   if (bihidden == 0) {
-    breakInp.style.display = "none";
+    breakInp.style.display = "none"; //makes input windows close other open input windows
     bihidden = 1;
   };
   if (tahidden == 0) {
@@ -647,6 +650,7 @@ taskBtn.onclick = function() {
     tahidden = 1;
   };
 };
+//updates the taskbox
 function update_taskbox() {
   temptasktext = ""
   for (let i = 0; i < tasknlist.length; i++) {
