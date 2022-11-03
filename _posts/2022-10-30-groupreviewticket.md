@@ -6,13 +6,33 @@ toc: true
 permalink: /watchersreviewticket
 ---
 
-# Project Overview
+## Project Overview
 
 The Work Watch is an interactive, customizable stopwatch program which helps you organize your work sessions. Though we provide default recommendations for break intervals, duration, and timer notification intervals, the user can customize them fully. The user is also able to create a list of tasks to complete during the work session, along with their expected duration.
 
 The user is notified when it is time to take a break and when they had anticipated they would have completed a certain task to help keep them on track.
 
-## Planning
+### Theming and Purpose
+
+Our program's theme is sleek and minimalistic, which goes along with its purpose of preventing distractions. The more detailed purpose of the Work Watch is to help students get the most out of their work sessions while also giving time for them to do the things they enjoy.
+
+As we learned in the speech by Laurie Santos ("Psychology and the Good Life"), students often feel that they do not have enough time to do the things that they enjoy, which are often things that supplement their learning (exercise, reading, and even consuming other forms of media).
+
+It has been proven in numerous studies that taking semi-frequent breaks during work sessions not only improves mental health and prevents burnout, but increases the quality (and even, at times, quantity) of work output. We made our program with this in mind.
+
+### Our Frontend
+
+Go [here](https://jagermi3ster.github.io/theworkwatch/workwatch) to see our frontend (the program itself) by looking at inspect element. Check the code comments to see the purpose for all variables/functions.
+
+### Our Backend
+
+Go [here](https://jagermi3ster.github.io/theworkwatch/api/alarms) to see where the backend data is collected, and [here](https://workwatch.nighthawkcodescrums.gq/api/jokes/) to see the raw data produced by our backend code. It is obviously directly based on the pre-existing Jokes API, modified for our needs. We did not feel it necessary to change the variables to fit alarms instead of jokes because it would have been an unnecessary amount of effort for an equal result.
+
+## The Process
+
+Below we describe the four stages we were asked to talk about in last week's review ticket.
+
+### Planning
 
 Though not ideal with their format due to a lack of checkboxes (as mentioned in class), up to this point, our group has used an issue on our group Flask Github repository to organize assignments for each week as well as what we intend to get done. See the full SCRUM board [here](https://github.com/drewreed2005/The-Watchers/issues/1).
 
@@ -20,7 +40,7 @@ From the first week, we laid out the features we wanted to include (plus some bo
 
 In the "Goals" section of the SCRUM Board table, we outlined our interests for the next week of work. At the beginning of each week, we looked back at these goals and referenced them when creating a sprint plan, reflected by the "Assignments" each week given to various roles. Sometimes the assignments are more specific than other times. It depends on what specifically we saw necessary to get done by the end of the day.
 
-## What We've Completed in the Past Week
+### What We've Completed in the Past Week
 
 It would probably be most efficient to explain what we've done in the past week by looking at [this page](https://jagermi3ster.github.io/theworkwatch/workwatchbeta).
 
@@ -47,7 +67,7 @@ This week, starting from just a styled HTML page and some disconnected stopwatch
 
 There is likely more that we neglected to mention.
 
-## Problems We Faced and Solutions
+### Problems We Faced and Solutions
 
 Here are just a few off the top of our heads, expressed in a table.
 
@@ -78,12 +98,12 @@ Here are just a few off the top of our heads, expressed in a table.
     </tr>
 </table>
 
-## What's Left to Do
+### What's Left to Do
 
-We plan to add...
+As of last week, we planned to add...
 
 - A fetch process to our Alarm API that determines which alarm will play when a break occurs, ends, or a task was anticipated to have ended
 - The location of the input windows for breaks, notifications and tasks will be relative to the corresponding button (rather than transforming and translating with pixels or percentage)
 - Customize this fastpages to fit our group
 
-We've got a few days to figure it out, so everything should be great by the due date.
+We added all but the relative locations for the input windows because there simply isn't enough time to uproot the code to work like that. Ultimately, it doesn't really matter.
