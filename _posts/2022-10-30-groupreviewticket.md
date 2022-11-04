@@ -1,6 +1,6 @@
 ---
 title: The Watchers' Group Review Ticket
-layout: default
+layout: post
 description: In this ticket, we discuss what we completed in the past week, our planning process, what problems we faced and what we still have left to do.
 toc: true
 permalink: /watchersreviewticket
